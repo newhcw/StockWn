@@ -1,8 +1,8 @@
-package com.hy.stock.calculate;
+package com.example;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import javafx.util.Pair;
 
 
 
@@ -11,6 +11,7 @@ import java.util.List;
 /**
  * 技术指标：MACD的算法  
  */
+
 public final class MACD
 {
 
@@ -93,7 +94,7 @@ public final class MACD
     
     public static void main(String [] i_Args)
     {   
-        List<Pair<String,Double>> v_PriceList = new ArrayList<Pair<String,Double>>();
+        List<Pair<String,Double>> v_PriceList = new ArrayList<Pair<String, Double>>();
         v_PriceList.add(new Pair<String,Double>("1997-12-31",6.97));
         v_PriceList.add(new Pair<String,Double>("1998-12-31",9.66));
         v_PriceList.add(new Pair<String,Double>("1999-12-31",10.03));
@@ -102,20 +103,20 @@ public final class MACD
         v_PriceList.add(new Pair<String,Double>("2002-12-31",13.35));
         v_PriceList.add(new Pair<String,Double>("2003-12-31",9.25));
         v_PriceList.add(new Pair<String,Double>("2004-12-31",6.2));
-        List<MACD> v_MACDList = calcMACD();
+        List<MACD> v_MACDList = calcMACD(v_PriceList);
         ;
         v_MACDList.forEach(System.out::println);
     }
     
 
-    public static List<MACD> calcMACD(List<Pari<String,Double>> i_PriceList)
+    public static List<MACD> calcMACD(List<Pair<String,Double>> i_PriceList)
     {
         List<MACD> v_MACDList = new ArrayList<MACD>();
         MACD v_MACD = calcMACD(i_PriceList.get(0).getKey(), i_PriceList.get(0).getValue(), i_PriceList.get(0).getValue(), i_PriceList.get(0).getValue(), i_PriceList.get(0).getValue());
         for(int i = 1;i < i_PriceList.size();i++)
         {
-            v_MACD = calcMACD(i_PriceList.get(i().getKey(), i_PriceList.get(i).getValue(), v_MACD.getEma12(), v_MACD.getEma26(), v_MACD.getDea()));
-            v_MACDList.add(v_MACD)
+            v_MACD = calcMACD(i_PriceList.get(i).getKey(), i_PriceList.get(i).getValue(), v_MACD.getEma12(), v_MACD.getEma26(), v_MACD.getDea());
+            v_MACDList.add(v_MACD);
         }
         return v_MACDList;
     }  
@@ -318,6 +319,8 @@ public final class MACD
         this.bar = bar;
     }
 
-
+    public String  toString(){
+        return "date:"+date+",ema12:"+ema12+",ema26:"+ema26+",dif:"+dif+",dea:"+dea+",bar:"+bar;
+    }
     
 }
