@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * 技术指标：MACD的算法  
  */
-public final class MACD1 
+public final class MACD
 {
 
 
